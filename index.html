@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Bootstrap -->
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+
+    <!-- Favicon -->
+
+    <link rel="icon" type="image/png" href="./images/favicon.ico" />
+
+    <!-- Stylesheet -->
+
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>The Stock Exchanger</title>
+  </head>
+
+  <body class="d-flex h-100 text-center text-white bg-dark">
+    <h3 class="site-name float-md-start mb-0 position-absolute">
+      <a href="./index.html">The Stock Exchanger</a>
+    </h3>
+    <div class="cover-container d-flex w-100 h-100 mx-auto flex-column">
+      <div class="marquee"></div>
+      <main class="px-3 display-flex">
+        <div id="form" class="input-group"></div>
+        <div class="results-list d-none"></div>
+      </main>
+      <footer class="mt-auto text-white-50">
+        <p>Tamir Shriki - Stock Exchange</p>
+      </footer>
+    </div>
+
+    <script src="./js/Marquee.js"></script>
+    <script src="js/SearchForm.js"></script>
+    <script src="./js/SearchResult.js"></script>
+
+    <script>
+      (async function () {
+        const marquee = new Marquee(document.querySelector(".marquee"));
+        marquee.getMarquee();
+        const formMaker = new SearchForm(document.querySelector("#form"));
+        const listMaker = new SearchResult(
+          document.querySelector(".results-list")
+        );
+        formMaker.onSearch((x) => {
+          listMaker.renderResults(x);
+        });
+      })();
+    </script>
+  </body>
+</html>
